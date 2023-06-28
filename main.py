@@ -3,7 +3,7 @@ import discord
 from core.client import AkaneBot
 
 # Create Akane bot
-client = AkaneBot(',')
+client = AkaneBot('/')
 
 client.remove_command('help')
 
@@ -20,9 +20,19 @@ async def help(ctx):
 
 
 @client.command(pass_context=True)
-async def bump(ctx):
-    await ctx.send("/images waifu ")
+async def hello(ctx):
+    await ctx.send("Hi")
 
+
+@client.command(pass_context=True)
+async def ping(ctx):
+    await ctx.send("pong")
+
+
+@client.command(pass_context=True)
+async def finale(ctx):
+    await ctx.send("Hey there! Now that a command has been ran, you should be able to get your Active Developer badge on https://discord.com/developers/active-developer. \n"
+                   "If it doesn't let you get your badge, check again in 24 hours.")
 
 if __name__ == "__main__":
     # Run bot
