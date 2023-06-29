@@ -19,6 +19,8 @@ class Configure:
         "log": str,
         "owner": str,
         "status": str,
+        "cai_token": str,
+        "char_token": str,
     }
 
     def __init__(self, bot):

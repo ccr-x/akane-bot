@@ -3,6 +3,8 @@ import time
 import discord
 from discord.ext import commands
 
+from characterai import PyAsyncCAI
+
 from core.config import Configure
 
 
@@ -18,6 +20,9 @@ class AkaneBot(commands.Bot):
 
         self.config = Configure(self)
 
+        # Run AI engine
+        self.run_ai()
+
     # Checking the login of bot
     async def on_ready(self):
         """ Outputs message to console and logs channel when the bot is online"""
@@ -29,3 +34,7 @@ class AkaneBot(commands.Bot):
             super().run(self.config.__getitem__("bot_token"))
         else:
             print("Unable to run: No Token")
+
+    async def run_ai(self):
+        client = PyAsyncCAI(self.config.__getitem__("cai_token"))
+        await client.start()

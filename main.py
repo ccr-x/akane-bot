@@ -34,6 +34,19 @@ async def finale(ctx):
     await ctx.send("Hey there! Now that a command has been ran, you should be able to get your Active Developer badge on https://discord.com/developers/active-developer. \n"
                    "If it doesn't let you get your badge, check again in 24 hours.")
 
+
+@client.command(pass_context=True)
+async def talk(ctx):
+    message = ctx.message
+
+    data = await client.chat.send_message('D8tGHd25fa20HnyaQYqMjPQr46hpqFyR8dwmQnL4wiA', message)
+
+    message = data['replies'][0]['text']
+
+    await ctx.send(message)
+
+
 if __name__ == "__main__":
     # Run bot
     client.run()
+
