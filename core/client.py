@@ -19,9 +19,8 @@ class AkaneBot(commands.Bot):
         super().__init__(intents=discord.Intents.all(), command_prefix=prefix)
 
         self.config = Configure(self)
+        self.ai_client = None
 
-        # Run AI engine
-        self.run_ai()
 
     # Checking the login of bot
     async def on_ready(self):
@@ -29,12 +28,12 @@ class AkaneBot(commands.Bot):
         print(f"Logged in as \n {self.user.name}\n {self.user.id}\n at {time.asctime()}\n ------")
         self.config.__getitem__("bot_token")
 
+        # Run AI engine
+        self.ai_client = PyAsyncCAI(self.config.__getitem__("cai_token"))
+        await self.ai_client.start()
+
     def run(self, **kwargs):
         if self.config.__getitem__("bot_token") is not None or "":
             super().run(self.config.__getitem__("bot_token"))
         else:
             print("Unable to run: No Token")
-
-    async def run_ai(self):
-        client = PyAsyncCAI(self.config.__getitem__("cai_token"))
-        await client.start()

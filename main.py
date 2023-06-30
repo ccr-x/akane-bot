@@ -37,9 +37,11 @@ async def finale(ctx):
 
 @client.command(pass_context=True)
 async def talk(ctx):
-    message = ctx.message
-
-    data = await client.chat.send_message('D8tGHd25fa20HnyaQYqMjPQr46hpqFyR8dwmQnL4wiA', message)
+    message = ctx.message.content
+    message = message.replace("/talk ", ctx.message.author.name + ": ")
+    data = ""
+    async with ctx.typing():
+        data = await client.ai_client.chat.send_message('D8tGHd25fa20HnyaQYqMjPQr46hpqFyR8dwmQnL4wiA', message)
 
     message = data['replies'][0]['text']
 
