@@ -48,6 +48,24 @@ class UserCommands(commands.Cog):
         # Send response
         await interaction.response.send_message(message, ephemeral=False)
 
+    # TODO: Temporary fix to problem above, but are unable to use it using the / command prefix
+    @commands.command(pass_context=True)
+    async def talk(self, ctx):
+        # Get user author
+        message = ctx.message.content
+        message = message.replace("/talk ", ctx.message.author.name + ": ")
+
+        # chat with the character
+        data = ""
+        async with ctx.typing():
+            data = await self.bot.ai_client.chat.send_message('D8tGHd25fa20HnyaQYqMjPQr46hpqFyR8dwmQnL4wiA', message)
+
+        # Get response
+        message = data['replies'][0]['text']
+
+        # Send response
+        await ctx.send(message)
+
 
 async def setup(bot):
     await bot.add_cog(UserCommands(bot), guilds=[discord.Object(id=1123380624531656725)])

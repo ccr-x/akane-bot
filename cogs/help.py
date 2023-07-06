@@ -14,6 +14,17 @@ class Help(commands.Cog):
     async def on_ready(self):
         print('Help cog loaded')
 
+    @commands.command(pass_context=True)
+    async def help(self, ctx):
+        user = ctx.message.author
+        embed = discord.Embed()
+
+        # Set bot author
+        embed.set_author(name="_ccr", url="https://github.com/ccr-x",
+                         icon_url="https://avatars.githubusercontent.com/u/32170529?v=4")
+
+        await user.send(user, embed=embed)
+
     # TODO: Does not work
     @app_commands.command(name="help", description="Helps you getting to know the bot")
     async def help(self, ctx):
