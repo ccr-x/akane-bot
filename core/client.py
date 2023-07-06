@@ -21,7 +21,6 @@ class AkaneBot(commands.Bot):
         self.config = Configure(self)
         self.ai_client = None
 
-
     # Checking the login of bot
     async def on_ready(self):
         """ Outputs message to console and logs channel when the bot is online"""
