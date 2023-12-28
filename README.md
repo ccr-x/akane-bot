@@ -22,6 +22,7 @@ The following are optional:
 
 
 ### The following libraries need to be installed for it to work
+#### *These libraries will be also installable using the frozen file*
     - discord.py
     - python-dotenv
     - characterai
