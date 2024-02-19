@@ -9,6 +9,7 @@ from discord.ext import commands
 
 # Create Akane bot
 bot = AkaneBot('.')
+userBot = commands.Bot('.', intents=discord.Intents.all())
 
 bot.remove_command('help')
 
@@ -23,6 +24,4 @@ async def load():
 async def main():
     await load()
     await bot.run()
-
-
 asyncio.run(main())

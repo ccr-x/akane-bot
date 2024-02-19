@@ -4,7 +4,7 @@ import time
 import discord
 from discord.ext import commands
 
-from characterai import PyAsyncCAI
+# from characterai import PyAsyncCAI
 
 from core.config import Configure
 
@@ -29,8 +29,8 @@ class AkaneBot(commands.Bot):
         self.config.__getitem__("bot_token")
 
         # Run AI engine
-        self.ai_client = PyAsyncCAI(self.config.__getitem__("cai_token"))
-        await self.ai_client.start()
+        # self.ai_client = PyAsyncCAI(self.config.__getitem__("cai_token"))
+        # await self.ai_client.start()
 
     async def run(self, **kwargs):
         if self.config.__getitem__("bot_token") is not None or "":
